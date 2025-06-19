@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: hr_raw_data
+    description: "Source data for HR analytics"
+    catalog: dbt_workspace  
+    schema: dbt_schema  
+    tables:
+      - name: hr_raw_data

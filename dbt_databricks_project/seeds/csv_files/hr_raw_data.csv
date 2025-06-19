@@ -1,4 +1,4 @@
-employee_id,full_name,job_title,department,business_unit,gender,ethnicity,age,hire_date,annual_salary,bonus_%,country,city,exit_date,latitude,longitude
+employee_id,full_name,job_title,department,business_unit,gender,ethnicity,age,hire_date,annual_salary,bonus__,country,city,exit_date,latitude,longitude
 E00005,Riley Washington,Director,Sales,Speciality Products,Female,Caucasian,39,4/29/2007,"$171,487 ",0.23,United States,Phoenix,,33.6049778,-112.4546902
 E00013,Raelynn Ma,Senior Analyst,Finance,Speciality Products,Female,Asian,33,10/8/2015,"$94,876 ",0.0,United States,Miami,,25.7823843,-80.3118592
 E00013,Elena Vang,Analyst,Finance,Corporate,Female,Asian,52,2/19/2019,"$55,859 ",0.0,China,Beijing,,39.9384171,116.0678242
