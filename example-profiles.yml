@@ -1,0 +1,22 @@
+dbt_databricks:
+  outputs:
+    dev:
+      catalog: dbt_workspace
+      host: dbc-3e66c097-a060.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/23084c3798934421
+      schema: dbt_schema
+      threads: 1
+      token: dapie3e57c46fc4977ebcf4ca4359c423c0d
+      type: databricks
+  target: dev
+
+  
+default:
+  outputs:
+    dev:
+      host: dbc-3e66c097-a060.cloud.databricks.com
+      http_path: /sql/1.0/warehouses/23084c3798934421
+      schema: default
+      token: dapie3e57c46fc4977ebcf4ca4359c423c0d
+      type: databricks
+  target: dev
