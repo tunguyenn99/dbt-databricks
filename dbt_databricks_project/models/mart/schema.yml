@@ -1,0 +1,178 @@
+version: 2
+
+models:
+  - name: mart_bonus_by_unit_department
+    description: "Summary of bonus by business unit and department"
+    columns:
+      - name: business_unit
+        description: "Business unit name"
+      - name: department
+        description: "Department name"
+      - name: employee_count
+        description: "Number of employees in this group"
+      - name: avg_bonus_percentage
+        description: "Average bonus percentage in this group"
+
+  - name: mart_bonus_summary
+    description: "Bonus distribution statistics across departments and units"
+    columns:
+      - name: business_unit
+        description: "Business unit name"
+      - name: department
+        description: "Department name"
+      - name: num_employees
+        description: "Number of employees in this group"
+      - name: avg_bonus_percentage
+        description: "Average bonus percentage"
+      - name: total_bonus_percentage
+        description: "Total bonus percentage accumulated"
+
+  - name: mart_bonus_trend
+    description: "Historical trend of bonus percentage by hire year"
+    columns:
+      - name: hire_year
+        description: "Year the employee was hired"
+      - name: avg_bonus_percentage
+        description: "Average bonus percentage of employees hired that year"
+      - name: num_employees
+        description: "Number of employees hired that year"
+
+  - name: mart_diversity_dashboard
+    description: "Workforce diversity dashboard by gender, ethnicity, and age"
+    columns:
+      - name: gender
+        description: "Employee gender"
+      - name: ethnicity
+        description: "Employee ethnicity"
+      - name: age_group
+        description: "Age group bucket (<30, 30–50, 50+)"
+      - name: employee_count
+        description: "Number of employees in this demographic group"
+
+  - name: mart_geographic_distribution
+    description: "Workforce geographic distribution by country and city"
+    columns:
+      - name: country
+        description: "Country of work location"
+      - name: city
+        description: "City of work location"
+      - name: employee_count
+        description: "Number of employees at this location"
+      - name: avg_lat
+        description: "Average latitude of employee locations"
+      - name: avg_long
+        description: "Average longitude of employee locations"
+
+  - name: mart_pay_correlation
+    description: "Salary and bonus analysis by job title and department"
+    columns:
+      - name: department
+        description: "Department name"
+      - name: job_title
+        description: "Job title"
+      - name: avg_salary
+        description: "Average annual salary"
+      - name: avg_bonus
+        description: "Average bonus percentage"
+
+  - name: mart_pay_equity_by_demo
+    description: "Salary and bonus equity by gender, ethnicity, and age group"
+    columns:
+      - name: gender
+        description: "Gender group"
+      - name: ethnicity
+        description: "Ethnicity group"
+      - name: age_group
+        description: "Age group bucket (<30, 30–50, 50+)"
+      - name: avg_salary
+        description: "Average salary in this group"
+      - name: avg_bonus
+        description: "Average bonus percentage in this group"
+
+  - name: mart_pay_equity
+    description: "Overall pay equity metrics"
+    columns:
+      - name: gender
+        description: "Gender group"
+      - name: ethnicity
+        description: "Ethnicity group"
+      - name: age_group
+        description: "Age group bucket"
+      - name: avg_salary
+        description: "Average annual salary"
+      - name: avg_bonus
+        description: "Average bonus percentage"
+
+  - name: mart_retention_by_demo
+    description: "Retention rate by gender, ethnicity, and age group over years"
+    columns:
+      - name: year
+        description: "Analysis year"
+      - name: gender
+        description: "Gender group"
+      - name: ethnicity
+        description: "Ethnicity group"
+      - name: age_group
+        description: "Age group"
+      - name: headcount
+        description: "Active employees in this group"
+      - name: separations
+        description: "Number of separations in this group"
+      - name: retention_rate
+        description: "Retention rate (1 - separations / headcount)"
+
+  - name: mart_retention_by_unit
+    description: "Retention rate by business unit over years"
+    columns:
+      - name: year
+        description: "Year of analysis"
+      - name: business_unit
+        description: "Business unit name"
+      - name: headcount
+        description: "Number of employees"
+      - name: separations
+        description: "Number of separations"
+      - name: retention_rate
+        description: "Calculated retention rate"
+
+  - name: mart_retention_summary
+    description: "High-level retention rate breakdown by demographic groups"
+    columns:
+      - name: year
+        description: "Year of analysis"
+      - name: gender
+        description: "Gender group"
+      - name: ethnicity
+        description: "Ethnicity group"
+      - name: age_group
+        description: "Age group category"
+      - name: headcount
+        description: "Number of employees"
+      - name: separations
+        description: "Number of employees who left"
+      - name: retention_rate
+        description: "Calculated retention rate"
+
+  - name: mart_retention_trend_yearly
+    description: "Overall employee retention trend by year"
+    columns:
+      - name: year
+        description: "Year"
+      - name: avg_employees
+        description: "Average number of employees"
+      - name: separations
+        description: "Number of employees who left"
+      - name: retention_rate
+        description: "Calculated retention rate"
+
+  - name: mart_turnover_over_time
+    description: "Monthly employee turnover trend"
+    columns:
+      - name: period
+        description: "Month of analysis"
+      - name: avg_employees
+        description: "Average number of employees"
+      - name: separations
+        description: "Number of separations"
+      - name: turnover_rate
+        description: "Turnover rate as a percentage"

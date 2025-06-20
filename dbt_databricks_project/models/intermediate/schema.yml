@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: int_employee_snapshot
+    description: >
+      Snapshot of each employee's status by year, indicating whether they were actively employed during that year.
+    columns:
+      - name: employee_id
+        description: "Unique identifier for each employee"
+      - name: gender
+        description: "Employee gender"
+      - name: ethnicity
+        description: "Employee ethnicity"
+      - name: age
+        description: "Age of the employee at the time of snapshot"
+      - name: hire_date
+        description: "Employee's hire date"
+      - name: exit_date
+        description: "Employee's exit date, if applicable"
+      - name: year
+        description: "Snapshot year (as a DATE truncated to year start)"
+      - name: is_active
+        description: "Flag indicating if the employee was active in the given year (1 = active, 0 = not active)"
+
+  - name: int_retention_metrics
+    description: >
+      Calculates employee retention rate by year, based on the number of separations and the average number of employees.
+    columns:
+      - name: year
+        description: "Year of analysis"
+      - name: separations
+        description: "Number of employee separations in the year"
+      - name: avg_employees
+        description: "Average number of employees during the year"
+      - name: retention_rate
+        description: "Retention rate (1 - turnover rate)"
+
+  - name: int_turnover_by_period
+    description: >
+      Calculates employee turnover rate by month, based on average employee count and number of separations.
+    columns:
+      - name: period
+        description: "Analysis period (monthly, truncated to the first day of the month)"
+      - name: avg_employees
+        description: "Average number of employees during the period"
+      - name: separations
+        description: "Number of separations during the period"
+      - name: turnover_rate
+        description: "Turnover rate as a percentage (separations / avg_employees * 100)"

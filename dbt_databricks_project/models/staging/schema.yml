@@ -1,9 +1,53 @@
 version: 2
 
 sources:
-  - name: hr_raw_data
+  - name: hr_source
     description: "Source data for HR analytics"
     catalog: dbt_workspace  
     schema: dbt_schema  
     tables:
       - name: hr_raw_data
+        description: "Raw employee data ingested from the HR system, includes personal, job, and compensation information"
+        columns:
+          - name: employee_id
+            description: "Unique identifier for each employee"
+          - name: full_name
+            description: "Full name of the employee"
+          - name: job_title
+            description: "Job title held by the employee"
+          - name: department
+            description: "Department where the employee works"
+          - name: business_unit
+            description: "Business unit or division of the employee"
+          - name: gender
+            description: "Gender of the employee"
+          - name: ethnicity
+            description: "Ethnicity category of the employee"
+          - name: age
+            description: "Age of the employee"
+          - name: hire_date
+            description: "Date the employee joined the company (raw format)"
+          - name: exit_date
+            description: "Date the employee left the company (if applicable, raw format)"
+          - name: annual_salary
+            description: "Employee's annual salary (raw numeric or text format)"
+          - name: bonus_%
+            description: "Annual bonus percentage awarded (stored as text with % symbol)"
+          - name: country
+            description: "Country of the employee's work location"
+          - name: city
+            description: "City of the employee's work location"
+          - name: latitude
+            description: "Latitude coordinate of the office location"
+          - name: longitude
+            description: "Longitude coordinate of the office location"
+          - name: employment_status
+            description: "Current employment status (e.g., Active, Terminated, On Leave)"
+          - name: last_performance_review_date
+            description: "Date of the employee's last performance review"
+          - name: performance_rating
+            description: "Rating from the last performance review (e.g., Excellent, Good, Needs Improvement)"
+          - name: training_hours_last_year
+            description: "Total training hours completed by the employee in the last year"
+          - name: work_location_type
+            description: "Type of work location (e.g., Onsite, Remote, Hybrid)"
