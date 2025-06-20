@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  kestra:
+    image: kestra/kestra:latest-full
+    ports:
+      - "8082:8080"
+    environment:
+      - KESTRA_CONFIGURATION=kestra.server-type=standalone
+    volumes:
+      - kestra_data:/app/storage
+      - ./flows:/app/flows  # nơi bạn để file flow
+
+volumes:
+  kestra_data:
