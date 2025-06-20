@@ -1,15 +1,79 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  kestra:
-    image: kestra/kestra:latest-full
-    ports:
-      - "8082:8080"
-    environment:
-      - KESTRA_CONFIGURATION=kestra.server-type=standalone
+  postgres:
+    image: postgres
+    restart: unless-stopped
     volumes:
-      - kestra_data:/app/storage
-      - ./flows:/app/flows  # nơi bạn để file flow
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: kestra
+      POSTGRES_USER: kestra
+      POSTGRES_PASSWORD: k3str4
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $$POSTGRES_DB -U $$POSTGRES_USER"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  kestra:
+    image: kestra/kestra:latest
+    restart: unless-stopped
+    user: "root"
+    command: server standalone
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - kestra-data:/app/storage
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /tmp/kestra-wd:/tmp/kestra-wd
+      - ./flows:/app/flows
+      - ../dbt_databricks_project:/app/dbt-databricks/dbt_databricks_project
+    env_file:
+      - .env  
+    environment:
+      KESTRA_CONFIGURATION: |
+        plugins:
+          - io.kestra.plugin.scripts
+          - io.kestra.plugin.scripts.docker
+        datasources:
+          postgres:
+            url: jdbc:postgresql://postgres:5432/kestra
+            driverClassName: org.postgresql.Driver
+            username: kestra
+            password: k3str4
+        kestra:
+          plugins:
+            path: /app/plugins
+          server:
+            basicAuth:
+              enabled: false
+              username: "admin@localhost.dev"
+              password: kestra
+          repository:
+            type: postgres
+          storage:
+            type: local
+            local:
+              basePath: "/app/storage"
+          queue:
+            type: postgres
+          tasks:
+            tmpDir:
+              path: /tmp/kestra-wd/tmp
+          url: http://localhost:8080/
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+
+  kestra-cli:
+    image: kestra/kestra:latest
+    container_name: kestra-cli
+    entrypoint: tail -f /dev/null
+    volumes:
+      - ./flows:/app/flows
 
 volumes:
-  kestra_data:
+  postgres-data:
+  kestra-data:
