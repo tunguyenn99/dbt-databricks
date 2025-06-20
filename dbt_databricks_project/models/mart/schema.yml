@@ -6,58 +6,95 @@ models:
     columns:
       - name: business_unit
         description: "Business unit name"
+        tests: [not_null]
       - name: department
         description: "Department name"
+        tests: [not_null]
       - name: employee_count
         description: "Number of employees in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_bonus_percentage
         description: "Average bonus percentage in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_bonus_summary
     description: "Bonus distribution statistics across departments and units"
     columns:
       - name: business_unit
         description: "Business unit name"
+        tests: [not_null]
       - name: department
         description: "Department name"
+        tests: [not_null]
       - name: num_employees
         description: "Number of employees in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_bonus_percentage
         description: "Average bonus percentage"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: total_bonus_percentage
         description: "Total bonus percentage accumulated"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_bonus_trend
     description: "Historical trend of bonus percentage by hire year"
     columns:
       - name: hire_year
         description: "Year the employee was hired"
+        tests: [not_null]
       - name: avg_bonus_percentage
         description: "Average bonus percentage of employees hired that year"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: num_employees
         description: "Number of employees hired that year"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_diversity_dashboard
     description: "Workforce diversity dashboard by gender, ethnicity, and age"
     columns:
       - name: gender
         description: "Employee gender"
+        tests: [not_null]
       - name: ethnicity
         description: "Employee ethnicity"
+        tests: [not_null]
       - name: age_group
         description: "Age group bucket (<30, 30–50, 50+)"
+        tests: [not_null]
       - name: employee_count
         description: "Number of employees in this demographic group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_geographic_distribution
     description: "Workforce geographic distribution by country and city"
     columns:
       - name: country
         description: "Country of work location"
+        tests: [not_null]
       - name: city
         description: "City of work location"
+        tests: [not_null]
       - name: employee_count
         description: "Number of employees at this location"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_lat
         description: "Average latitude of employee locations"
       - name: avg_long
@@ -68,26 +105,43 @@ models:
     columns:
       - name: department
         description: "Department name"
+        tests: [not_null]
       - name: job_title
         description: "Job title"
+        tests: [not_null]
       - name: avg_salary
         description: "Average annual salary"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_bonus
         description: "Average bonus percentage"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_pay_equity_by_demo
     description: "Salary and bonus equity by gender, ethnicity, and age group"
     columns:
       - name: gender
         description: "Gender group"
+        tests: [not_null]
       - name: ethnicity
         description: "Ethnicity group"
+        tests: [not_null]
       - name: age_group
         description: "Age group bucket (<30, 30–50, 50+)"
+        tests: [not_null]
       - name: avg_salary
         description: "Average salary in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_bonus
         description: "Average bonus percentage in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_pay_equity
     description: "Overall pay equity metrics"
@@ -100,79 +154,150 @@ models:
         description: "Age group bucket"
       - name: avg_salary
         description: "Average annual salary"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_bonus
         description: "Average bonus percentage"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
 
   - name: mart_retention_by_demo
     description: "Retention rate by gender, ethnicity, and age group over years"
     columns:
       - name: year
         description: "Analysis year"
+        tests: [not_null]
       - name: gender
         description: "Gender group"
+        tests: [not_null]
       - name: ethnicity
         description: "Ethnicity group"
+        tests: [not_null]
       - name: age_group
         description: "Age group"
+        tests: [not_null]
       - name: headcount
         description: "Active employees in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: separations
         description: "Number of separations in this group"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: retention_rate
         description: "Retention rate (1 - separations / headcount)"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+          - dbt_utils.expression_is_true:
+              expression: "<=1"
 
   - name: mart_retention_by_unit
     description: "Retention rate by business unit over years"
     columns:
       - name: year
         description: "Year of analysis"
+        tests: [not_null]
       - name: business_unit
         description: "Business unit name"
+        tests: [not_null]
       - name: headcount
         description: "Number of employees"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: separations
         description: "Number of separations"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: retention_rate
         description: "Calculated retention rate"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+          - dbt_utils.expression_is_true:
+              expression: "<=1"
 
   - name: mart_retention_summary
     description: "High-level retention rate breakdown by demographic groups"
     columns:
       - name: year
         description: "Year of analysis"
+        tests: [not_null]
       - name: gender
         description: "Gender group"
+        tests: [not_null]
       - name: ethnicity
         description: "Ethnicity group"
+        tests: [not_null]
       - name: age_group
         description: "Age group category"
+        tests: [not_null]
       - name: headcount
         description: "Number of employees"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: separations
         description: "Number of employees who left"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: retention_rate
         description: "Calculated retention rate"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">=0"
+          - dbt_utils.expression_is_true:
+              expression: "<=1"
 
   - name: mart_retention_trend_yearly
     description: "Overall employee retention trend by year"
     columns:
       - name: year
         description: "Year"
+        tests: [not_null]
       - name: avg_employees
         description: "Average number of employees"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: separations
         description: "Number of employees who left"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: retention_rate
         description: "Calculated retention rate"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+          - dbt_utils.expression_is_true:
+              expression: "<= 1"
 
   - name: mart_turnover_over_time
     description: "Monthly employee turnover trend"
     columns:
       - name: period
         description: "Month of analysis"
+        tests: [not_null]
       - name: avg_employees
         description: "Average number of employees"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: separations
         description: "Number of separations"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: turnover_rate
         description: "Turnover rate as a percentage"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

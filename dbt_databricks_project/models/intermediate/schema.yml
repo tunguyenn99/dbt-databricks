@@ -7,20 +7,32 @@ models:
     columns:
       - name: employee_id
         description: "Unique identifier for each employee"
+        tests: [not_null]
       - name: gender
         description: "Employee gender"
+        tests:
+          - accepted_values:
+              values: ['Male', 'Female', 'Other']
       - name: ethnicity
         description: "Employee ethnicity"
       - name: age
         description: "Age of the employee at the time of snapshot"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: hire_date
         description: "Employee's hire date"
+        tests: [not_null]
       - name: exit_date
         description: "Employee's exit date, if applicable"
       - name: year
-        description: "Snapshot year (as a DATE truncated to year start)"
+        description: "Snapshot year"
+        tests: [not_null]
       - name: is_active
-        description: "Flag indicating if the employee was active in the given year (1 = active, 0 = not active)"
+        description: "Whether the employee was active that year"
+        tests:
+          - accepted_values:
+              values: [0, 1]
 
   - name: int_retention_metrics
     description: >
@@ -28,12 +40,24 @@ models:
     columns:
       - name: year
         description: "Year of analysis"
+        tests: [not_null]
       - name: separations
         description: "Number of employee separations in the year"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: avg_employees
         description: "Average number of employees during the year"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: retention_rate
         description: "Retention rate (1 - turnover rate)"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+          - dbt_utils.expression_is_true:
+              expression: "<= 1"              
 
   - name: int_turnover_by_period
     description: >
@@ -41,9 +65,19 @@ models:
     columns:
       - name: period
         description: "Analysis period (monthly, truncated to the first day of the month)"
+        tests: [not_null]
       - name: avg_employees
         description: "Average number of employees during the period"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: separations
         description: "Number of separations during the period"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
       - name: turnover_rate
         description: "Turnover rate as a percentage (separations / avg_employees * 100)"
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

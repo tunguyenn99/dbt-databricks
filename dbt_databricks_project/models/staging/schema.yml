@@ -11,6 +11,8 @@ sources:
         columns:
           - name: employee_id
             description: "Unique identifier for each employee"
+            tests:
+              - not_null
           - name: full_name
             description: "Full name of the employee"
           - name: job_title
@@ -27,6 +29,7 @@ sources:
             description: "Age of the employee"
           - name: hire_date
             description: "Date the employee joined the company (raw format)"
+            tests: [not_null]
           - name: exit_date
             description: "Date the employee left the company (if applicable, raw format)"
           - name: annual_salary
@@ -35,19 +38,11 @@ sources:
             description: "Annual bonus percentage awarded (stored as text with % symbol)"
           - name: country
             description: "Country of the employee's work location"
+            tests: [not_null]
           - name: city
             description: "City of the employee's work location"
+            tests: [not_null]
           - name: latitude
             description: "Latitude coordinate of the office location"
           - name: longitude
             description: "Longitude coordinate of the office location"
-          - name: employment_status
-            description: "Current employment status (e.g., Active, Terminated, On Leave)"
-          - name: last_performance_review_date
-            description: "Date of the employee's last performance review"
-          - name: performance_rating
-            description: "Rating from the last performance review (e.g., Excellent, Good, Needs Improvement)"
-          - name: training_hours_last_year
-            description: "Total training hours completed by the employee in the last year"
-          - name: work_location_type
-            description: "Type of work location (e.g., Onsite, Remote, Hybrid)"
