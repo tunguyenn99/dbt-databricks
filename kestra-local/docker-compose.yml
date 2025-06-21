@@ -29,7 +29,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /tmp/kestra-wd:/tmp/kestra-wd
       - ./flows:/app/flows
-      - ../dbt_databricks_project:/app/dbt-databricks/dbt_databricks_project
+      - ../dbt_databricks_project:/app/dbt-databricks/dbt_databricks_project # Optional: Mount your dbt project if needed
     env_file:
       - .env  
     environment:
