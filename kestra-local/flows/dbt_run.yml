@@ -19,7 +19,7 @@ tasks:
           - dbt deps
           - dbt build
         profiles: |
-          dbt-databricks:
+          dbt_databricks:
             outputs:
               dev:
                 type: databricks
@@ -30,3 +30,6 @@ tasks:
                 token: "{{ env.DATABRICKS_TOKEN }}"
                 threads: 1
             target: dev
+
+
+            
