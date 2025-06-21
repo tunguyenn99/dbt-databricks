@@ -67,12 +67,12 @@ services:
       - "8080:8080"
       - "8081:8081"
 
-  kestra-cli:
-    image: kestra/kestra:latest
-    container_name: kestra-cli
-    entrypoint: tail -f /dev/null
-    volumes:
-      - ./flows:/app/flows
+  # kestra-cli:
+  #   image: kestra/kestra:latest
+  #   container_name: kestra-cli
+  #   entrypoint: tail -f /dev/null
+  #   volumes:
+  #     - ./flows:/app/flows
 
 volumes:
   postgres-data:
