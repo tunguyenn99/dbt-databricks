@@ -1,4 +1,4 @@
-#!/home/tunguyenn99/project/dbt-databricks/venv/bin/python3
+#!/home/tunguyenn99/project-vscode/dbt-databricks/venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

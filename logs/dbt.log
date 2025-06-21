@@ -142,3 +142,35 @@ Runtime Error
 [0m16:46:35.379538 [debug] [MainThread]: Command `dbt deps` failed at 16:46:35.379460 after 0.05 seconds
 [0m16:46:35.379815 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd46b21ff70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd4699fd7c0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fd469a84490>]}
 [0m16:46:35.380197 [debug] [MainThread]: Flushing usage events
+[0m00:40:53.562159 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0ef9f56cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0ef9228ee0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0ef85fd1c0>]}
+
+
+============================== 00:40:53.564637 | 8df70c67-63c3-443f-8513-68f2fe0f3c9f ==============================
+[0m00:40:53.564637 [info ] [MainThread]: Running with dbt=1.8.7
+[0m00:40:53.565332 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/home/tunguyenn99/.dbt', 'debug': 'False', 'version_check': 'True', 'log_path': 'logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'invocation_command': 'dbt init', 'static_parser': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m00:41:03.603435 [debug] [MainThread]: Starter project path: /home/tunguyenn99/project-vscode/dbt-databricks/venv/lib/python3.8/site-packages/dbt/include/starter_project
+[0m00:41:03.608375 [info ] [MainThread]: 
+Your new dbt project "dbt_databricks_project" was created!
+
+For more information on how to configure the profiles.yml file,
+please consult the dbt documentation here:
+
+  https://docs.getdbt.com/docs/configure-your-profile
+
+One more thing:
+
+Need help? Don't hesitate to reach out to us via GitHub issues or on Slack:
+
+  https://community.getdbt.com/
+
+Happy modeling!
+
+[0m00:41:03.609051 [info ] [MainThread]: Setting up your profile.
+[0m00:41:05.002974 [debug] [MainThread]: Spark adapter: Setting pyhive.hive logging to ERROR
+[0m00:41:05.003857 [debug] [MainThread]: Spark adapter: Setting thrift.transport logging to ERROR
+[0m00:41:05.004626 [debug] [MainThread]: Spark adapter: Setting thrift.protocol logging to ERROR
+[0m00:43:39.152167 [info ] [MainThread]: Profile dbt_databricks_project written to /home/tunguyenn99/.dbt/profiles.yml using target's profile_template.yml and your supplied values. Run 'dbt debug' to validate the connection.
+[0m00:43:39.153396 [debug] [MainThread]: Resource report: {"command_name": "init", "command_success": true, "command_wall_clock_time": 165.64514, "process_user_time": 2.394413, "process_kernel_time": 0.49959, "process_mem_max_rss": "220668", "process_in_blocks": "360", "process_out_blocks": "96"}
+[0m00:43:39.154127 [debug] [MainThread]: Command `dbt init` succeeded at 00:43:39.153903 after 165.65 seconds
+[0m00:43:39.154837 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0ef9f56cd0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0efb8afbe0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f0ed5a6bf40>]}
+[0m00:43:39.155619 [debug] [MainThread]: Flushing usage events
