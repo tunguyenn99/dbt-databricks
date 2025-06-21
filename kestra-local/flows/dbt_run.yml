@@ -30,6 +30,3 @@ tasks:
                 token: "{{ env.DATABRICKS_TOKEN }}"
                 threads: 1
             target: dev
-
-
-            
