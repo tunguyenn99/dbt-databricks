@@ -113,6 +113,18 @@ After executing the flow, the models and metrics are loaded into Databricks SQL.
 📷 Screenshot:  
 ![Querying DBT Results in Databricks](images/07-result.png)
 
+## 🔗 Lineage
+
+I execute some more bash commands to build dbt docs:
+
+```bash
+dbt docs generate
+dbt docs serve --port 8083
+```
+
+📷 Screenshot:  
+![dbt docs](images/08-dbt-docs.png)
+
 ---
 
 ## 🎯 Analysis Objectives
